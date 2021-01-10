@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="https://img.icons8.com/nolan/64/blog.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Certificate Maker</title>
+</head>
+<body>
+    <div class="heading">
+        <h1>Certificate Maker</h1>
+    </div>
+    <div class="main">
+        <div class="container">
+            <h2>Upload the Certificate Template</h2>
+            <input id="upload" type="file" accept='.jpg,.png' onChange="handleImageUpload()" placeholder="" aria-label="" aria-describedby="button-addon" />
+        </div>
+        <div class="container">
+            <h2>Customize your font</h2>
+            <input type="color" value="#000000" id="colorWell">
+            <div class="move">
+                <button class="move-icons" onclick="sizeIncrease()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <button class="move-icons" onclick="sizeDecrease()"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                <button class="move-icons" onclick="up()"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                <button class="move-icons" onclick="down()"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                <button class="move-icons" onclick="left()"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                <button class="move-icons" onclick="right()"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+            </div>
+        </div>
+        <div class="container">
+            <h2>Paste list of names line by line</h2>
+            <textarea id="names" rows="3" onChange="addNames()" placeholder="Every name on a new line"></textarea>
+            <button id="save-btn" type="button" onClick="saveZip()">Save</button>
+            <button id="save-btn" type="button" onClick="preview()">Preview</button>
+        </div>
+    </div>
+    <div class="preview">
+        <canvas id="canvas" dir="rtl" ></canvas>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.js"></script>
+    <script src="jszip.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="app.js" charset="utf-8"></script>
+</body>
+</html>

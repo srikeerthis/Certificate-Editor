@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;800&display=swap");
+
+body {
+  background-color: #112;
+  font-family: "Montserrat", sans-serif;
+}
+
+h2 {
+  font-size: 25px;
+}
+
+.heading {
+  margin: 2rem auto;
+  color: #eee;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 25px;
+}
+
+.main {
+  display: flex;
+  margin: auto;
+  padding: 0.5rem;
+  border-radius: 3px;
+  background-color: #eee;
+  justify-content: space-around;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1em;
+  text-align: center;
+}
+
+input[type="file" i] {
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  margin: 0 auto;
+}
+
+input #file-upload-button {
+  background-color: #000;
+}
+
+.move {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.move-icons {
+  font-size: 2rem;
+  margin: 0.2rem;
+}
+
+#save-btn {
+  margin: 1rem auto;
+  padding: 0.2rem;
+  width: 30%;
+  color: #eee;
+  font-size: 20px;
+  font-weight: 500;
+  background-color: #4caf50;
+  border: none;
+  border-radius: 50px;
+}
+
+.preview {
+  margin: 1rem 0;
+  width: 100%;
+  display: flex;
+  justify-items: center;
+}
+
+textarea {
+  font-family: "Montserrat", sans-serif;
+}
+
+#canvas {
+  margin: 0 auto;
+  max-width: 70%;
+}
+
+#colorWell {
+  width: 100%;
+}
