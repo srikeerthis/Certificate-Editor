@@ -3,15 +3,15 @@ var ctx = c.getContext("2d");
 var image = new Image();
 var file;
 var data;
-var name = "Name of Participant";
+var name = "<Placeholder>";
 var names = [];
 colorWell = document.querySelector("#colorWell");
 ctx.textAlign = "center";
 var color = "#000000";
-var size = 100;
+var size = 30;
 ctx.fillStyle = color;
-var x = 1300;
-var y = 1300;
+var x = 500;
+var y = 300;
 
 function showBorder(width, height) {
   let canvas = document.getElementById("canvas");
@@ -91,7 +91,7 @@ function sizeDecrease() {
 function sizeIncrease() {
   var resultCondition = checkImage();
   if (resultCondition == true) {
-    size += 1;
+    size += 2;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     image.onload = () => {
       onLoadImg(x, y);
@@ -103,7 +103,7 @@ function sizeIncrease() {
 function up() {
   var resultCondition = checkImage();
   if (resultCondition == true) {
-    y -= 10;
+    y -= 20;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     image.onload = () => {
       onLoadImg(x, y);
@@ -115,7 +115,7 @@ function up() {
 function down() {
   var resultCondition = checkImage();
   if (resultCondition == true) {
-    y += 10;
+    y += 20;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     image.onload = () => {
       onLoadImg(x, y);
@@ -127,7 +127,7 @@ function down() {
 function right() {
   var resultCondition = checkImage();
   if (resultCondition == true) {
-    x += 10;
+    x += 20;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     image.onload = () => {
       onLoadImg(x, y);
@@ -139,7 +139,7 @@ function right() {
 function left() {
   var resultCondition = checkImage();
   if (resultCondition == true) {
-    x -= 10;
+    x -= 20;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     image.onload = () => {
       onLoadImg(x, y);
@@ -148,7 +148,7 @@ function left() {
   }
 }
 
-document.addEventListener("keyup", logKey);
+document.addEventListener("keydown", logKey);
 
 function logKey(e) {
   if (e.keyCode === 37) {
@@ -224,6 +224,22 @@ function saveFile() {
     URL.revokeObjectURL(link.href);
   }, "image/png");
 }
+function preview()
+{
+  var resultCondition = checkImage();
+  if (resultCondition == true) {
+    if (names == null) {
+      showInfo();
+    } else {
+      for (let i = 0; i < names.length; i++) {
+        name = names[i];
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        onLoadImg(x, y);
+        image.src = data;
+      }
+    }
+  }
+}
 
 function saveZip() {
   var resultCondition = checkImage();
@@ -252,22 +268,3 @@ function saveZip() {
     }
   }
 }
-
-function preview() {
-  var resultCondition = checkImage();
-  if (resultCondition == true) {
-    var imgUrl;
-    if (names == null) {
-      showInfo();
-    } else {
-      for (let i = 0; i < names.length; i++) {
-        name = names[i];
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        onLoadImg(x, y);
-        image.src = data;
-        imgUrl = c.toDataURL();
-      }
-    }
-  }
-}
-
