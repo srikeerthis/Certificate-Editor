@@ -12,6 +12,10 @@ var size = 30;
 ctx.fillStyle = color;
 var x = 500;
 var y = 300;
+var speed = 0;
+var span = document.getElementById('speed'); // find the <span> element in the DOM
+var increment = document.getElementById('increment'); // find the element with the ID 'increment'
+var decrement = document.getElementById('decrement'); // find the element with the ID 'decrement'
 
 function showBorder(width, height) {
   let canvas = document.getElementById("canvas");
@@ -103,7 +107,7 @@ function sizeIncrease() {
 function up() {
   var resultCondition = checkImage();
   if (resultCondition == true) {
-    y -= 20;
+    y -= speed;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     image.onload = () => {
       onLoadImg(x, y);
@@ -115,7 +119,7 @@ function up() {
 function down() {
   var resultCondition = checkImage();
   if (resultCondition == true) {
-    y += 20;
+    y += speed;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     image.onload = () => {
       onLoadImg(x, y);
@@ -127,7 +131,7 @@ function down() {
 function right() {
   var resultCondition = checkImage();
   if (resultCondition == true) {
-    x += 20;
+    x += speed;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     image.onload = () => {
       onLoadImg(x, y);
@@ -139,7 +143,7 @@ function right() {
 function left() {
   var resultCondition = checkImage();
   if (resultCondition == true) {
-    x -= 20;
+    x -= speed;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     image.onload = () => {
       onLoadImg(x, y);
@@ -147,6 +151,16 @@ function left() {
     image.src = data;
   }
 }
+
+increment.addEventListener('click', function () {
+  // this function is executed whenever the user clicks the increment button
+  span.value = ++speed;
+});
+
+decrement.addEventListener('click', function () {
+  // this function is executed whenever the user clicks the decrement button
+  span.value = --speed;
+});
 
 document.addEventListener("keydown", logKey);
 
@@ -239,6 +253,15 @@ function preview()
       }
     }
   }
+}
+
+function resetcoord()
+{
+  x = 500;
+  y = 300;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+        onLoadImg(x, y);
+        image.src = data;
 }
 
 function saveZip() {
