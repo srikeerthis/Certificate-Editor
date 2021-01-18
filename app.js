@@ -238,22 +238,6 @@ function saveFile() {
     URL.revokeObjectURL(link.href);
   }, "image/png");
 }
-function preview()
-{
-  var resultCondition = checkImage();
-  if (resultCondition == true) {
-    if (names == null) {
-      showInfo();
-    } else {
-      for (let i = 0; i < names.length; i++) {
-        name = names[i];
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        onLoadImg(x, y);
-        image.src = data;
-      }
-    }
-  }
-}
 
 function resetcoord()
 {

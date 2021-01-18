@@ -14,10 +14,6 @@
         <h1>Certificate Maker</h1>
     </div>
 
-    <div class="preview">
-        <canvas id="canvas" dir="rtl" ></canvas>
-    </div>
-
     <div class="main">
         <div class="container">
             <h2>Upload the Certificate Template</h2>
@@ -35,7 +31,7 @@
                 <button class="move-icons" onclick="right()"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
             </div>
             <button id="increment">Speed Inc</button>
-            <input id="speed" value="0" size="5" height="90">
+            <input id="speed" value="0" size="5" height="90" disabled>
             <button id="decrement">Speed Dec</button>
             <button id="save-btn" type="button" onClick="resetcoord()">Reset Coordinates</button>
         </div>
@@ -43,9 +39,13 @@
             <h2>Paste list of names line by line</h2>
             <textarea id="names" rows="3" onChange="addNames()" placeholder="Every name on a new line"></textarea>
             <button id="save-btn" type="button" onClick="saveZip()">Save</button>
-            <button id="save-btn" type="button" onClick="preview()">Preview</button>
         </div>
     </div>
+
+    <div class="preview">
+        <canvas id="canvas" dir="rtl" ></canvas>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.js"></script>
     <script src="jszip.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
