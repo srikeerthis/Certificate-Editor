@@ -29,6 +29,7 @@
                 <button class="move-icons" onclick="down()"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
                 <button class="move-icons" onclick="left()"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
                 <button class="move-icons" onclick="right()"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                <button id="lock" type="button" onclick="change()">Lock</button> 
             </div>
             <div class="speed">
                 <button onclick="x1()">1</button>
@@ -43,7 +44,6 @@
             <input type="file" id="uploadfile" onChange="addNames(this)">
             <button id="save-btn" type="button" onClick="saveZip()">Save</button>
             <button id="save-btn" type="button" onClick="resetcoord()">Reset Coordinates</button>
-            
         </div>
     </div>
     <div id="table">

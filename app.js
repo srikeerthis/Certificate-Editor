@@ -4,6 +4,7 @@ var image = new Image();
 var file;
 var data;
 var name = "<Placeholder>";
+var name1 = "<Placeholder2>";
 var names = [];
 colorWell = document.querySelector("#colorWell");
 ctx.textAlign = "center";
@@ -12,6 +13,8 @@ var size = 30;
 ctx.fillStyle = color;
 var x = 500;
 var y = 300;
+var x1 = 900;
+var y1 = 300;
 var speed = 2;
 var span = document.getElementById('speed'); // find the <span> element in the DOM
 var increment = document.getElementById('increment'); // find the element with the ID 'increment'
@@ -78,6 +81,7 @@ function onLoadImg(x, y) {
   c.setAttribute("dir", "ltr");
   ctx.direction = "rtl";
   ctx.fillText(name, x, y);
+  ctx.fillText(name1, x1, y1);
 }
 
 function sizeDecrease() {
@@ -152,6 +156,54 @@ function left() {
   }
 }
 
+function up1() {
+  var resultCondition = checkImage();
+  if (resultCondition == true) {
+    y1 -= speed;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    image.onload = () => {
+      onLoadImg(x1, y1);
+    };
+    image.src = data;
+  }
+}
+
+function down1() {
+  var resultCondition = checkImage();
+  if (resultCondition == true) {
+    y1 += speed;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    image.onload = () => {
+      onLoadImg(x1, y1);
+    };
+    image.src = data;
+  }
+}
+
+function right1() {
+  var resultCondition = checkImage();
+  if (resultCondition == true) {
+    x1 += speed;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    image.onload = () => {
+      onLoadImg(x1, y1);
+    };
+    image.src = data;
+  }
+}
+
+function left1() {
+  var resultCondition = checkImage();
+  if (resultCondition == true) {
+    x1 -= speed;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    image.onload = () => {
+      onLoadImg(x1, y1);
+    };
+    image.src = data;
+  }
+}
+
 function x1() {
   speed = 1;
 }
@@ -178,6 +230,22 @@ function logKey(e) {
   if (e.keyCode === 37) {
     //left
     left();
+  }
+  if (e.keyCode === 65) {
+    //left
+    left1();
+  }
+  if (e.keyCode === 83) {
+    //left
+    down1();
+  }
+  if (e.keyCode === 68) {
+    //left
+    right1();
+  }
+  if (e.keyCode === 87) {
+    //left
+    up1();
   }
   if (e.keyCode === 39) {
     //right
@@ -270,6 +338,8 @@ function resetcoord()
 {
   x = 500;
   y = 300;
+  x1 = 900;
+  y1= 300;
   ctx.clearRect(0, 0, canvas.width, canvas.height);
         onLoadImg(x, y);
         image.src = data;
@@ -286,6 +356,7 @@ function saveZip() {
     } else {
       for (let i = 1; i < names.length; i++) {
         name = names[i][0];
+        name1 = names[i][1];
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         onLoadImg(x, y);
         image.src = data;
