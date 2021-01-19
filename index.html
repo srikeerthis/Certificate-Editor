@@ -30,18 +30,24 @@
                 <button class="move-icons" onclick="left()"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
                 <button class="move-icons" onclick="right()"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
             </div>
-            <button id="increment">Speed Inc</button>
-            <input id="speed" value="0" size="5" height="90" disabled>
-            <button id="decrement">Speed Dec</button>
-            <button id="save-btn" type="button" onClick="resetcoord()">Reset Coordinates</button>
+            <div class="speed">
+                <button onclick="x1()">1</button>
+                <button onclick="x10()">10</button>
+                <button onclick="x50()">50</button>
+                <button onclick="x100()">100</button>
+                <button onclick="x500()">500</button>
+            </div>
         </div>
         <div class="container">
-            <h2>Paste list of names line by line</h2>
-            <textarea id="names" rows="3" onChange="addNames()" placeholder="Every name on a new line"></textarea>
+            <h2>Select the csv file</h2>
+            <input type="file" id="uploadfile" onChange="addNames(this)">
             <button id="save-btn" type="button" onClick="saveZip()">Save</button>
+            <button id="save-btn" type="button" onClick="resetcoord()">Reset Coordinates</button>
+            
         </div>
     </div>
-
+    <div id="table">
+    </div>
     <div class="preview">
         <canvas id="canvas" dir="rtl" ></canvas>
     </div>

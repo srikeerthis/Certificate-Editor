@@ -12,7 +12,7 @@ var size = 30;
 ctx.fillStyle = color;
 var x = 500;
 var y = 300;
-var speed = 0;
+var speed = 2;
 var span = document.getElementById('speed'); // find the <span> element in the DOM
 var increment = document.getElementById('increment'); // find the element with the ID 'increment'
 var decrement = document.getElementById('decrement'); // find the element with the ID 'decrement'
@@ -152,15 +152,25 @@ function left() {
   }
 }
 
-increment.addEventListener('click', function () {
-  // this function is executed whenever the user clicks the increment button
-  span.value = ++speed;
-});
+function x1() {
+  speed = 1;
+}
 
-decrement.addEventListener('click', function () {
-  // this function is executed whenever the user clicks the decrement button
-  span.value = --speed;
-});
+function x10() {
+  speed = 10;
+}
+
+function x50() {
+  speed = 50;
+}
+
+function x100() {
+  speed = 100;
+}
+
+function x500() {
+  speed = 500;
+}
 
 document.addEventListener("keydown", logKey);
 
@@ -219,8 +229,25 @@ function addName() {
   image.src = data;
 }
 
-function addNames() {
-  names = document.getElementById("names").value.match(/[^\s+].*[^\s*]*/g);
+var obj_csv = {
+  size:0,
+  dataFile:[]
+};
+
+
+function addNames(input) {
+  console.log(input)
+  if (input.files && input.files[0]) {
+   let reader = new FileReader();
+       reader.readAsBinaryString(input.files[0]);
+   reader.onload = function (e) {
+      console.log(e);
+     obj_csv.size = e.total;
+     obj_csv.dataFile = e.target.result
+           console.log(obj_csv.dataFile)
+           names = parseData(obj_csv.dataFile);        
+   }
+ }
 }
 
 function saveEveryName(StudentName) {
@@ -257,8 +284,8 @@ function saveZip() {
     if (names == null) {
       showInfo();
     } else {
-      for (let i = 0; i < names.length; i++) {
-        name = names[i];
+      for (let i = 1; i < names.length; i++) {
+        name = names[i][0];
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         onLoadImg(x, y);
         image.src = data;
@@ -274,4 +301,13 @@ function saveZip() {
       });
     }
   }
+}
+
+function parseData(data){
+    let csvData = [];
+    let lbreak = data.split("\n");
+    lbreak.forEach(res => {
+        csvData.push(res.split(","));
+    });
+    return csvData;
 }
