@@ -3,6 +3,7 @@ var ctx = c.getContext("2d");
 var image = new Image();
 var file;
 var data;
+var flag = false;
 var name = "<Placeholder>";
 var name1 = "<Placeholder2>";
 var names = [];
@@ -16,9 +17,6 @@ var y = 300;
 var x1 = 900;
 var y1 = 300;
 var speed = 2;
-var span = document.getElementById('speed'); // find the <span> element in the DOM
-var increment = document.getElementById('increment'); // find the element with the ID 'increment'
-var decrement = document.getElementById('decrement'); // find the element with the ID 'decrement'
 
 function showBorder(width, height) {
   let canvas = document.getElementById("canvas");
@@ -110,101 +108,104 @@ function sizeIncrease() {
 
 function up() {
   var resultCondition = checkImage();
-  if (resultCondition == true) {
-    y -= speed;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    image.onload = () => {
-      onLoadImg(x, y);
-    };
-    image.src = data;
+  if(flag == true){
+    if (resultCondition == true) {
+      y -= speed;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      image.onload = () => {
+        onLoadImg(x, y);
+      };
+      image.src = data;
+    }
+  }
+  else{
+    if (resultCondition == true) {
+      y1 -= speed;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      image.onload = () => {
+        onLoadImg(x1, y1);
+      };
+      image.src = data;
+    }
   }
 }
 
 function down() {
   var resultCondition = checkImage();
-  if (resultCondition == true) {
-    y += speed;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    image.onload = () => {
-      onLoadImg(x, y);
-    };
-    image.src = data;
+  if(flag == true)
+  {
+    if (resultCondition == true) {
+      y += speed;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      image.onload = () => {
+        onLoadImg(x, y);
+      };
+      image.src = data;
+    }
+  }
+  else{
+    if (resultCondition == true) {
+      y1 += speed;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      image.onload = () => {
+        onLoadImg(x1, y1);
+      };
+      image.src = data;
+    }
   }
 }
 
 function right() {
   var resultCondition = checkImage();
-  if (resultCondition == true) {
-    x += speed;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    image.onload = () => {
-      onLoadImg(x, y);
-    };
-    image.src = data;
+  if(flag == true)
+  {
+    if (resultCondition == true) {
+      x += speed;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      image.onload = () => {
+        onLoadImg(x, y);
+      };
+      image.src = data;
+    }
+  }
+  else{
+    if (resultCondition == true) {
+      x1 += speed;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      image.onload = () => {
+        onLoadImg(x1, y1);
+      };
+      image.src = data;
+    }
   }
 }
 
 function left() {
   var resultCondition = checkImage();
-  if (resultCondition == true) {
-    x -= speed;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    image.onload = () => {
-      onLoadImg(x, y);
-    };
-    image.src = data;
+  if(flag == true)
+  {
+    if (resultCondition == true) {
+      x -= speed;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      image.onload = () => {
+        onLoadImg(x, y);
+      };
+      image.src = data;
+    }
+  }
+  else {
+    if (resultCondition == true) {
+      x1 -= speed;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      image.onload = () => {
+        onLoadImg(x1, y1);
+      };
+      image.src = data;
+    }
   }
 }
 
-function up1() {
-  var resultCondition = checkImage();
-  if (resultCondition == true) {
-    y1 -= speed;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    image.onload = () => {
-      onLoadImg(x1, y1);
-    };
-    image.src = data;
-  }
-}
-
-function down1() {
-  var resultCondition = checkImage();
-  if (resultCondition == true) {
-    y1 += speed;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    image.onload = () => {
-      onLoadImg(x1, y1);
-    };
-    image.src = data;
-  }
-}
-
-function right1() {
-  var resultCondition = checkImage();
-  if (resultCondition == true) {
-    x1 += speed;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    image.onload = () => {
-      onLoadImg(x1, y1);
-    };
-    image.src = data;
-  }
-}
-
-function left1() {
-  var resultCondition = checkImage();
-  if (resultCondition == true) {
-    x1 -= speed;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    image.onload = () => {
-      onLoadImg(x1, y1);
-    };
-    image.src = data;
-  }
-}
-
-function x1() {
+function xone() {
   speed = 1;
 }
 
@@ -225,27 +226,20 @@ function x500() {
 }
 
 document.addEventListener("keydown", logKey);
+document.getElementById("canvas").addEventListener("click",clicking);
+
+function clicking(){
+ if(flag == false)
+  flag = true;
+  else{
+    flag = false;
+  }
+}
 
 function logKey(e) {
   if (e.keyCode === 37) {
     //left
     left();
-  }
-  if (e.keyCode === 65) {
-    //left
-    left1();
-  }
-  if (e.keyCode === 83) {
-    //left
-    down1();
-  }
-  if (e.keyCode === 68) {
-    //left
-    right1();
-  }
-  if (e.keyCode === 87) {
-    //left
-    up1();
   }
   if (e.keyCode === 39) {
     //right
@@ -302,24 +296,19 @@ var obj_csv = {
   dataFile:[]
 };
 
-
 function addNames(input) {
   console.log(input)
   if (input.files && input.files[0]) {
    let reader = new FileReader();
        reader.readAsBinaryString(input.files[0]);
    reader.onload = function (e) {
-      console.log(e);
-     obj_csv.size = e.total;
-     obj_csv.dataFile = e.target.result
-           console.log(obj_csv.dataFile)
-           names = parseData(obj_csv.dataFile);        
+    console.log(e);
+    obj_csv.size = e.total;
+    obj_csv.dataFile = e.target.result
+    console.log(obj_csv.dataFile)
+    names = parseData(obj_csv.dataFile);        
    }
  }
-}
-
-function saveEveryName(StudentName) {
-  name = StudentName;
 }
 
 function saveFile() {
@@ -351,7 +340,7 @@ function saveZip() {
     var imgUrl;
     var zip = new JSZip();
     console.log(names);
-    if (names == null) {
+    if (names.length == 0) {
       showInfo();
     } else {
       for (let i = 1; i < names.length; i++) {

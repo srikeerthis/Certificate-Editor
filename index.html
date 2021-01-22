@@ -22,32 +22,31 @@
         <div class="container">
             <h2>Customize your font</h2>
             <input type="color" value="#000000" id="colorWell">
-            <div class="move">
-                <button class="move-icons" onclick="sizeIncrease()"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                <button class="move-icons" onclick="sizeDecrease()"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                <button class="move-icons" onclick="up()"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                <button class="move-icons" onclick="down()"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-                <button class="move-icons" onclick="left()"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
-                <button class="move-icons" onclick="right()"><i class="fa fa-arrow-right" aria-hidden="true"></i></button>
-                <button id="lock" type="button" onclick="change()">Lock</button> 
-            </div>
             <div class="speed">
-                <button onclick="x1()">1</button>
+                <button onclick="xone()">1</button>
                 <button onclick="x10()">10</button>
                 <button onclick="x50()">50</button>
                 <button onclick="x100()">100</button>
                 <button onclick="x500()">500</button>
             </div>
+            <div class="move">
+                <button class="move-icons" onclick="sizeIncrease()"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                <button class="move-icons" onclick="sizeDecrease()"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                <!-- <button class="move-icons" onclick="up()"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                <button class="move-icons" onclick="down()"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                <button class="move-icons" onclick="left()"><i class="fa fa-arrow-left" aria-hidden="true"></i></button>
+                <button class="move-icons" onclick="right()"><i class="fa fa-arrow-right" aria-hidden="true"></i></button> -->
+            </div>
+            
         </div>
         <div class="container">
             <h2>Select the csv file</h2>
-            <input type="file" id="uploadfile" onChange="addNames(this)">
+            <input type="file" id="upload" accept=".csv" onChange="addNames(this)">
             <button id="save-btn" type="button" onClick="saveZip()">Save</button>
             <button id="save-btn" type="button" onClick="resetcoord()">Reset Coordinates</button>
         </div>
     </div>
-    <div id="table">
-    </div>
+    
     <div class="preview">
         <canvas id="canvas" dir="rtl" ></canvas>
     </div>
