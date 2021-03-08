@@ -8,7 +8,6 @@ var name = "<Placeholder>";
 var name1 = "<Placeholder2>";
 var names = [];
 colorWell = document.querySelector("#colorWell");
-ctx.textAlign = "center";
 var color = "#000000";
 var size = 30;
 ctx.fillStyle = color;
@@ -42,7 +41,7 @@ function showInfo() {
   Swal.fire({
     icon: "info",
     title: "Oops...",
-    text: "You didn`t enter any names",
+    text: "You didn`t select file containing details",
   });
 }
 
@@ -71,13 +70,12 @@ function onLoadImg(x, y) {
   var height = image.naturalHeight;
   c.width = width;
   c.height = height;
-  console.log("w=" + width + " h=" + height);
   c.className = "border";
   ctx.font = size + "px Comic Sans MS";
+  ctx.textAlign = "center";
   ctx.fillStyle = color;
   ctx.drawImage(image, 0, 0, width, height);
   c.setAttribute("dir", "ltr");
-  ctx.direction = "rtl";
   ctx.fillText(name, x, y);
   ctx.fillText(name1, x1, y1);
 }
@@ -261,6 +259,7 @@ function logKey(e) {
     //+
     sizeIncrease();
   }
+  
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   image.onload = () => {
     onLoadImg(x, y);
@@ -272,8 +271,6 @@ colorWell.addEventListener("input", () => {
   var resultCondition = checkImage();
   if (resultCondition == true) {
     color = event.target.value;
-    console.log(ctx.fillStyle);
-    console.log(event.target.value);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     image.onload = () => {
       onLoadImg(x, y);
@@ -297,15 +294,12 @@ var obj_csv = {
 };
 
 function addNames(input) {
-  console.log(input)
   if (input.files && input.files[0]) {
    let reader = new FileReader();
     reader.readAsBinaryString(input.files[0]);
     reader.onload = function (e) {
-    console.log(e);
     obj_csv.size = e.total;
     obj_csv.dataFile = e.target.result
-    console.log(obj_csv.dataFile)
     names = parseData(obj_csv.dataFile);       
    }
  }
@@ -348,7 +342,6 @@ function saveZip() {
   if (resultCondition == true) {
     var imgUrl;
     var zip = new JSZip();
-    console.log(names);
     if (names.length == 0) {
       showInfo();
     } else {
@@ -365,9 +358,23 @@ function saveZip() {
       }
 
       zip.generateAsync({type: "blob"}).then(function (content) {
-        // see FileSaver.js
         saveAs(content, "Certificates.zip");
       });
+    }
+  }
+}
+function preview(){
+  var resultCondition = checkImage();
+  if (resultCondition == true) {
+    if (names.length == 0) {
+      showInfo();
+    }else{
+      for (let i = 1; i < names.length; i++) {
+        name = names[i][0];
+        name1 = names[i][1];
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        onLoadImg(x, y);
+      }
     }
   }
 }
